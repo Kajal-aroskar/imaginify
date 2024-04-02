@@ -73,6 +73,7 @@ export async function deleteUser(clerkId: string) {
   }
 }
 
+
 // USE CREDITS
 export async function updateCredits(userId: string, creditFee: number) {
   try {
@@ -82,12 +83,16 @@ export async function updateCredits(userId: string, creditFee: number) {
       { _id: userId },
       { $inc: { creditBalance: creditFee }},
       { new: true }
-    )
+    );
 
-    if(!updatedUserCredits) throw new Error("User credits update failed");
+    if (!updatedUserCredits) {
+      throw new Error("User credits update failed for user with ID: " + userId);
+    }
 
     return JSON.parse(JSON.stringify(updatedUserCredits));
   } catch (error) {
+    console.error("Error updating user credits:", error);
+    // Assuming handleError is defined elsewhere to handle errors
     handleError(error);
   }
 }
