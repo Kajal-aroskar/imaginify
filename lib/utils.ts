@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
 import qs from "qs";
 import { twMerge } from "tailwind-merge";
@@ -20,14 +22,10 @@ export const handleError = (error: unknown) => {
     throw new Error(`Error: ${error}`);
   } else {
     // This is an unknown type of error
-    console.error("Unknown error occurred:", error);
-    // Additional logging or debugging statements
-    console.trace(); // Print the current stack trace
-    // You can also log other relevant information here
+    console.error(error);
     throw new Error(`Unknown error: ${JSON.stringify(error)}`);
   }
 };
-
 
 // PLACEHOLDER LOADER - while image is transforming
 const shimmer = (w: number, h: number) => `
