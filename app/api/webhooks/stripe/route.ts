@@ -19,8 +19,6 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("Webhook error:", err);
     console.log("Error Type:", typeof err);
-    console.log("Error Message:", err.message);
-    console.log("Error Stack:", err.stack);
     return NextResponse.json({ message: "Webhook error", error: err });
   }
 
